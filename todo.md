@@ -127,6 +127,14 @@
 - [ ] Criar/exportar o snapshot completo do projecto.
 - [ ] Entregar o link ou pacote do novo repositório.
 
+# Conector GitHub e exportação
+
+- [ ] Inspeccionar o conector GitHub existente e o seu estado.
+- [ ] Usar o conector existente se estiver utilizável.
+- [ ] Criar um conector novo somente se o existente não funcionar e houver credencial/autorização.
+- [ ] Exportar o checkpoint actual para um novo repositório.
+- [ ] Entregar o URL do repositório criado.
+
 # Novo repositório GitHub
 
 - [ ] Confirmar o utilizador/organização autenticado no GitHub.

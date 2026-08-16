@@ -87,3 +87,20 @@ button:focus-visible, input:focus-visible { outline:3px solid var(--amber); outl
 @media (max-width:900px) { .topbar { padding-left:20px; padding-right:20px; } .content { margin-left:82px; } .rail { width:82px; } .hero-content { padding-left:6vw; } .catalog-area { padding-left:28px; padding-right:28px; } .catalog-tools { display:none; } }
 @media (max-width:600px) { .topbar { height:72px; } .clock,.profile span { display:none; } .rail { top:72px; width:62px; padding-left:8px; padding-right:8px; } .content { margin-left:62px; } .hero { min-height:570px; } .hero-content { width:88vw; padding:156px 0 65px 28px; } .hero h1 { font-size:52px; } .hero p { font-size:16px; } .catalog-area { padding-left:20px; padding-right:16px; } .poster { flex-basis:148px; } .poster-art { height:212px; } .tabs { display:none; } .hero-index,.remote-hint { display:none; } }
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; animation:none!important; } }
+
+/* Cinema de Sala — faixa de episódios com navegação por foco e metadados legíveis em TV. */
+.episodes-panel { margin-top:42px; padding:28px 0 10px; border-top:1px solid rgba(255,255,255,.1); }
+.episodes-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:18px; }
+.episodes-heading h3 { margin:8px 0 0; font:700 27px 'Manrope',sans-serif; }
+.episode-count { color:var(--amber); font-size:14px; font-weight:700; }
+.episodes-row { display:flex; gap:12px; overflow-x:auto; scrollbar-width:none; padding:3px 3px 12px; }
+.episodes-row::-webkit-scrollbar { display:none; }
+.episode-card { min-width:242px; display:flex; align-items:center; gap:14px; padding:15px 16px; color:var(--text); background:#111b28; border:1px solid rgba(255,255,255,.1); border-radius:9px; text-align:left; cursor:pointer; transition:transform .16s, border-color .16s, background .16s; }
+.episode-card:hover,.episode-card:focus-visible { transform:translateY(-3px); border-color:var(--amber); background:#182535; outline:none; }
+.episode-number { color:var(--amber); font:800 23px 'Manrope',sans-serif; }
+.episode-info { display:flex; flex-direction:column; gap:4px; min-width:0; }
+.episode-info strong { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; font-size:14px; }
+.episode-info small { color:#8e9aaa; font-size:12px; }
+.episode-play { display:grid; place-items:center; width:29px; height:29px; margin-left:auto; flex:0 0 auto; color:#1a130c; background:var(--amber); border-radius:50%; }
+.episodes-note { margin:9px 0 0; color:#7f8b99; font-size:13px; }
+@media (max-width:600px) { .episodes-heading { align-items:flex-start; flex-direction:column; gap:9px; } .episodes-heading h3 { font-size:23px; } .episode-card { min-width:220px; } }

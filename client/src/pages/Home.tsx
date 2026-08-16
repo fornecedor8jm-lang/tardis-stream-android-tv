@@ -15,11 +15,11 @@ const catalog = [
   { title: "Páginas da Vida", year: "2026", genre: "Novelas", image: "https://image.tmdb.org/t/p/original/w8hJZMeGgP15u1ovBAVVnGI2Wek.jpg", badge: "Top 20  #14", episodes: 5, source: "https://novelasportuguesass.com/serie/paginas-da-vida/" },
   { title: "Terra Forte", year: "2025", genre: "Drama", image: "https://image.tmdb.org/t/p/original/7kvExcgCB8NuGbSyVe8VkBcuXXd.jpg", badge: "Top 20  #6", episodes: 5, source: "https://novelasportuguesass.com/serie/terra-forte/" },
   { title: "A Protegida", year: "2025", genre: "Comédia", image: "https://image.tmdb.org/t/p/original/qLNVsgOBJc2ClQJXa883mj11Lra.jpg", badge: "Top 20  #10", episodes: 50, source: "https://novelasportuguesass.com/serie/a-protegida/" },
-  { title: "A Madrasta", year: "2026", genre: "Drama", image: "https://image.tmdb.org/t/p/w1280/2s2KFQtFJqUbbx7ZwmiKG131yTQ.jpg", badge: "Estreia", episodes: 1, source: "https://novelasportuguesass.com/serie/a-madrasta/" },
-  { title: "Amor à Prova", year: "2026", genre: "Família", image: "https://image.tmdb.org/t/p/w1280/1fsHFRdqYQdxMtPxCuTIhKlOQga.jpg", badge: "Top 20  #15", episodes: 1, source: "https://novelasportuguesass.com/serie/amor-a-prova/" },
-  { title: "Golpe de Sorte", year: "2019", genre: "Crime", image: "https://image.tmdb.org/t/p/w1280/2Z8AX1QTNLOuDeCr9u0lJzKKFqY.jpg", badge: "", episodes: 1, source: "https://novelasportuguesass.com/serie/golpe-de-sorte/" },
-  { title: "Dancin’ Days", year: "2012", genre: "Novelas", image: "https://image.tmdb.org/t/p/w1280/3B5AAnZhMJc7sZJiRRL8FQrKp8l.jpg", badge: "", episodes: 1, source: "https://novelasportuguesass.com/serie/dancin-days/" },
-  { title: "Ilha dos Amores", year: "2007", genre: "Novelas", image: "https://image.tmdb.org/t/p/w1280/3EAtpRKslBSiw9sDt32CmLFjprA.jpg", badge: "", episodes: 1, source: "https://novelasportuguesass.com/serie/ilha-dos-amores/" },
+  { title: "A Madrasta", year: "2026", genre: "Drama", image: "https://image.tmdb.org/t/p/original/AO0KrvtbmCZ9KwCL5sbLqe9DTX.jpg", badge: "Estreia", episodes: 4, source: "https://novelasportuguesass.com/serie/a-madrasta/" },
+  { title: "Amor à Prova", year: "2026", genre: "Família", image: "https://image.tmdb.org/t/p/original/2PC9fbnlpYKn95ganjLfRBlu08l.jpg", badge: "Top 20  #15", episodes: 5, source: "https://novelasportuguesass.com/serie/amor-a-prova/" },
+  { title: "Golpe de Sorte", year: "2019", genre: "Crime", image: "https://image.tmdb.org/t/p/original/lJrciegsSN6izYvVJ8udxllM2hD.jpg", badge: "", episodes: 242, source: "https://novelasportuguesass.com/serie/golpe-de-sorte/" },
+  { title: "Dancin’ Days", year: "2012", genre: "Novelas", image: "https://image.tmdb.org/t/p/original/bRVXSOJ6DAd2sl1u8a49afAnvWP.jpg", badge: "", episodes: 341, source: "https://novelasportuguesass.com/serie/dancin-days/" },
+  { title: "Ilha dos Amores", year: "2007", genre: "Novelas", image: "https://image.tmdb.org/t/p/original/gT4NjehbQFEiKnNOlDEqNEWa8TW.jpg", badge: "", episodes: 214, source: "https://novelasportuguesass.com/serie/ilha-dos-amores/" },
 ];
 
 const episodeList = [

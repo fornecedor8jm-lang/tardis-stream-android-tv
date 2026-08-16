@@ -127,21 +127,31 @@
 - [ ] Criar/exportar o snapshot completo do projecto.
 - [ ] Entregar o link ou pacote do novo repositório.
 
+# Adaptação Vercel e commit
+
+- [x] Rever scripts, build e estrutura do projecto para Vercel.
+- [x] Adicionar apenas configuração de build/SPA, sem alterar o design.
+- [ ] Confirmar que não houve alterações em Home.tsx ou index.css.
+- [ ] Validar o build de produção e as rotas do frontend.
+- [ ] Criar commit da adaptação.
+- [ ] Enviar o commit para o GitHub público.
+
 # Conector GitHub e exportação
 
-- [ ] Inspeccionar o conector GitHub existente e o seu estado.
-- [ ] Usar o conector existente se estiver utilizável.
+- [x] Inspeccionar o conector GitHub existente e o seu estado.
+- [x] Usar o conector existente se estiver utilizável.
 - [ ] Criar um conector novo somente se o existente não funcionar e houver credencial/autorização.
-- [ ] Exportar o checkpoint actual para um novo repositório.
-- [ ] Entregar o URL do repositório criado.
+- [x] Exportar o checkpoint actual para um novo repositório.
+- [x] Entregar o URL do repositório criado.
 
 # Novo repositório GitHub
 
-- [ ] Confirmar o utilizador/organização autenticado no GitHub.
-- [ ] Confirmar o nome pretendido para o novo repositório.
-- [ ] Validar a compilação e o estado actual do site.
-- [ ] Criar o repositório novo e enviar o código.
-- [ ] Entregar o URL do GitHub e o checkpoint do site.
+- [x] Confirmar o utilizador/organização autenticado no GitHub.
+- [x] Usar `tardis-stream-android-tv` como nome do novo repositório.
+- [x] Validar o estado actual do site e o branch `main`.
+- [x] Criar o repositório novo e enviar o código.
+- [x] Alterar a visibilidade do repositório para pública.
+- [x] Entregar o URL público do GitHub e o checkpoint do site.
 
 # Teste visual em Chrome/Chromium de TV
 

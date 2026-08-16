@@ -115,6 +115,13 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 4px solid 
 .remote-hint span { margin-left: 6px; color: #77879d; }
 
 /* The TV composition intentionally stays unchanged at narrow widths. The app is embedded in Android TV, so mobile browsers receive the same rail, hero, rails and episode columns as desktop. */
+@media (max-width: 700px) {
+  body { overflow-x: hidden; }
+  .tardis-app { width: 1280px; min-width: 1280px; zoom: .56; }
+}
+@media (min-width: 701px) and (max-width: 980px) {
+  .tardis-app { width: 1280px; min-width: 1280px; zoom: .76; }
+}
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
 
 /* TV navigation correction: the expanded rail must reserve its visual width instead of covering content. */

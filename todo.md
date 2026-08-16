@@ -127,6 +127,23 @@
 - [ ] Criar/exportar o snapshot completo do projecto.
 - [ ] Entregar o link ou pacote do novo repositório.
 
+# Correcção do enquadramento móvel
+
+- [ ] Reduzir a largura efectiva do rail sem trocar as abas de posição.
+- [ ] Impedir que hero, títulos e cards fiquem cortados horizontalmente.
+- [ ] Manter a navegação lateral visível e utilizável em viewport móvel.
+- [ ] Validar proporções dos posters e quebra dos títulos.
+- [ ] Criar commit e enviar a correcção ao GitHub.
+
+# Auditoria de redundâncias entre abas
+
+- [ ] Inventariar todos os títulos por aba no modelo actual.
+- [ ] Detectar títulos e posters repetidos entre abas.
+- [ ] Definir uma única aba de destino para cada conteúdo confirmado.
+- [ ] Remover cópias redundantes sem misturar categorias.
+- [ ] Validar que nenhum título aparece em duas abas.
+- [ ] Criar commit e enviar a limpeza ao GitHub.
+
 # Unificação desktop e mobile para Android TV
 
 - [x] Auditar media queries que comprimem ou reorganizam a interface em viewport estreito.

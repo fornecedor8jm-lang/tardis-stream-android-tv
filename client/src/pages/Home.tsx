@@ -24,6 +24,8 @@ const seasonNames: Record<number, string> = {
   1: "A Nova Era", 2: "O Doutor e a Rose", 3: "A Tempestade se Aproxima", 4: "O Último Viajante", 5: "A Pandorica", 6: "O Silêncio", 7: "A Era de Sarah Jane", 8: "O Último Grande Senhor do Tempo", 9: "A Queda de Gallifrey", 10: "O Piloto", 11: "A Mulher que Caiu na Terra", 12: "Spyfall", 13: "Flux", 14: "A Nova Viagem", 15: "A Guerra da Realidade"
 };
 
+const availableClassicSeasons = [7, 8, 9, 10, 12, 13, 14, 15];
+
 const episodeSamples: Record<number, string[]> = {
   1: ["Rose", "O Fim do Mundo", "Os Mortos Inquietos", "Dalek"],
   2: ["A Invasão do Natal", "Nova Terra", "Dente e Garra", "Reunião Escolar"],
@@ -47,11 +49,11 @@ function posterUrl(id?: string) { return id ? `https://drive.google.com/thumbnai
 
 export default function Home() {
   const [activeNav, setActiveNav] = useState("Clássica");
-  const [activeSeason, setActiveSeason] = useState(1);
+  const [activeSeason, setActiveSeason] = useState(7);
   const [activeCard, setActiveCard] = useState(0);
   const [query, setQuery] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
-  const seasons = useMemo(() => Array.from({ length: 15 }, (_, index) => index + 1).filter((season) => `temporada ${season} ${seasonNames[season]}`.toLowerCase().includes(query.toLowerCase())), [query]);
+  const seasons = useMemo(() => availableClassicSeasons.filter((season) => `temporada ${season} ${seasonNames[season]}`.toLowerCase().includes(query.toLowerCase())), [query]);
   const selected = seasons[activeCard] ?? activeSeason;
   const episodes = episodeSamples[selected] ?? [];
 
@@ -84,13 +86,13 @@ export default function Home() {
     <main>
       <section className="tardis-hero">
         <div className="hero-vortex" />
-        <div className="hero-copy"><span className="hero-kicker">SINTONIZANDO O VÓRTEX TEMPORAL</span><h2>Doctor Who<br /><em>Clássica</em></h2><p>Uma viagem por décadas de aventuras, doutores e mundos impossíveis. Escolha uma temporada para começar.</p><div className="hero-meta"><span>1963 — ∞</span><span>15 temporadas</span><span>Fonte externa</span></div><div className="hero-actions"><button className="primary-action" onClick={() => openSource(folderUrl(selected))}><Play size={18} fill="currentColor" /> Abrir temporada {String(selected).padStart(2, "0")}</button><button className="secondary-action" onClick={() => document.getElementById("temporadas")?.scrollIntoView({ behavior: "smooth" })}><Info size={18} /> Ver temporadas</button></div></div>
+        <div className="hero-copy"><span className="hero-kicker">SINTONIZANDO O VÓRTEX TEMPORAL</span><h2>Doctor Who<br /><em>Clássica</em></h2><p>Uma viagem por décadas de aventuras, doutores e mundos impossíveis. Escolha uma temporada para começar.</p><div className="hero-meta"><span>1963 — ∞</span><span>{seasons.length} temporadas com poster</span><span>Fonte externa</span></div><div className="hero-actions"><button className="primary-action" onClick={() => openSource(folderUrl(selected))}><Play size={18} fill="currentColor" /> Abrir temporada {String(selected).padStart(2, "0")}</button><button className="secondary-action" onClick={() => document.getElementById("temporadas")?.scrollIntoView({ behavior: "smooth" })}><Info size={18} /> Ver temporadas</button></div></div>
         <div className="hero-mark"><span className="hero-star">✦</span><b>THE<br />TIME<br />LORD</b><small>PUBLIC CALL BOX</small></div>
       </section>
 
-      <section className="tardis-section" id="temporadas"><div className="section-heading"><div><span className="eyebrow">CATÁLOGO PRINCIPAL</span><h2>Temporadas clássicas</h2></div><span className="section-count">{seasons.length || 15} disponíveis</span></div><div className="season-rail">{seasons.map((season, index) => <button key={season} className={`season-card ${season === selected ? "selected" : ""}`} onFocus={() => { setActiveCard(index); setActiveSeason(season); }} onClick={() => setActiveSeason(season)} aria-label={`Abrir temporada ${season}`}><div className="season-art">{posterMap[season] ? <img src={posterUrl(posterMap[season])} alt={`Poster original da temporada ${season}`} /> : <div className="missing-poster"><span>✦</span><b>S{String(season).padStart(2, "0")}</b></div>}<span className="season-play"><Play size={16} fill="currentColor" /></span></div><strong>{season}ª Temporada</strong><small>{seasonNames[season]}</small><em>{posterMap[season] ? "Poster original" : "Página disponível"}</em></button>)}</div></section>
+      <section className="tardis-section" id="temporadas"><div className="section-heading"><div><span className="eyebrow">CATÁLOGO PRINCIPAL</span><h2>Temporadas clássicas</h2></div><span className="section-count">{seasons.length} com poster original</span></div><div className="season-rail">{seasons.map((season, index) => <button key={season} className={`season-card ${season === selected ? "selected" : ""}`} onFocus={() => { setActiveCard(index); setActiveSeason(season); }} onClick={() => setActiveSeason(season)} aria-label={`Abrir temporada ${season}`}><div className="season-art"><img src={posterUrl(posterMap[season])} alt={`Poster original da temporada ${season}`} /><span className="season-play"><Play size={16} fill="currentColor" /></span></div><strong>{season}ª Temporada</strong><small>{seasonNames[season]}</small><em>Poster original</em></button>)}</div></section>
 
-      <section className="episode-section"><div className="episode-header"><div><span className="eyebrow">TEMPORADA {String(selected).padStart(2, "0")}</span><h2>{seasonNames[selected]}</h2><p>{episodes.length} episódios destacados · pasta pública no Google Drive</p></div><button className="source-button" onClick={() => openSource(folderUrl(selected))}>Abrir pasta <ArrowRight size={17} /></button></div><div className="episode-layout"><div className="selected-poster">{poster ? <img src={poster} alt={`Poster original da temporada ${selected}`} /> : <div className="missing-poster large"><span>✦</span><b>DOCTOR<br />WHO</b><small>Temporada {selected}</small></div>}</div><div className="episode-list">{episodes.map((episode, index) => <button key={episode} className="episode-row" onClick={() => openSource(folderUrl(selected))}><span className="episode-number">{String(index + 1).padStart(2, "0")}</span><span><strong>{episode}</strong><small>Temporada {selected} · ficheiro MP4 na pasta oficial</small></span><Play size={18} fill="currentColor" /></button>)}</div></div></section>
+      <section className="episode-section"><div className="episode-header"><div><span className="eyebrow">TEMPORADA {String(selected).padStart(2, "0")}</span><h2>{seasonNames[selected]}</h2><p>{episodes.length} episódios destacados · pasta pública no Google Drive</p></div><button className="source-button" onClick={() => openSource(folderUrl(selected))}>Abrir pasta <ArrowRight size={17} /></button></div><div className="episode-layout"><div className="selected-poster"><img src={poster} alt={`Poster original da temporada ${selected}`} /></div><div className="episode-list">{episodes.map((episode, index) => <button key={episode} className="episode-row" onClick={() => openSource(folderUrl(selected))}><span className="episode-number">{String(index + 1).padStart(2, "0")}</span><span><strong>{episode}</strong><small>Temporada {selected} · ficheiro MP4 na pasta oficial</small></span><Play size={18} fill="currentColor" /></button>)}</div></div></section>
     </main>
     <footer className="tardis-footer"><span>TARDIS STREAM</span><span>Universo Doctor Who · 1963 — ∞</span><a href="https://tardisstream.blogspot.com/" target="_blank" rel="noreferrer">Abrir site original <ArrowRight size={15} /></a></footer>
     <div className="remote-hint"><ArrowLeft size={15} /><ArrowRight size={15} /> navegar <kbd>OK</kbd> seleccionar <span>Backspace</span> voltar</div>

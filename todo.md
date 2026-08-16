@@ -32,3 +32,27 @@
 - [ ] Identificar qual pasta corresponde a cada episódio ou temporada.
 - [ ] Guardar URLs de pasta e ficheiros autorizados sem copiar vídeos.
 - [ ] Mostrar no catálogo o estado de acesso de cada fonte.
+
+# Correcção das abas
+
+- [ ] Fazer “Início” funcionar como painel de descoberta, sem repetir a listagem principal.
+- [ ] Manter “Clássica” dedicada às 15 temporadas.
+- [ ] Criar conteúdo próprio para “Spin-offs”.
+- [ ] Criar conteúdo próprio para “Especiais”.
+- [ ] Verificar foco, títulos e contagens em cada aba.
+
+# Correcção dos posters
+
+- [ ] Auditar cada imagem actualmente associada às temporadas.
+- [ ] Recolher posters públicos verificáveis da fonte original.
+- [ ] Substituir referências inválidas e remover cartões sem artwork real.
+- [ ] Confirmar que o mesmo poster não foi atribuído a títulos diferentes.
+- [ ] Verificar visualmente todas as temporadas depois da correcção.
+
+# Remoção de títulos sem poster
+
+- [ ] Confirmar a lista exacta de posters públicos válidos.
+- [ ] Filtrar temporadas e títulos sem correspondência visual.
+- [ ] Remover placeholders e blocos vazios do catálogo.
+- [ ] Ajustar a selecção inicial e os episódios aos títulos restantes.
+- [ ] Verificar visualmente que só permanecem posters originais.

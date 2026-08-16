@@ -127,6 +127,14 @@
 - [ ] Criar/exportar o snapshot completo do projecto.
 - [ ] Entregar o link ou pacote do novo repositório.
 
+# Unificação desktop e mobile para Android TV
+
+- [x] Auditar media queries que comprimem ou reorganizam a interface em viewport estreito.
+- [ ] Preservar rail lateral fixo, abas na mesma posição do computador, hero, proporção dos posters e rails horizontais.
+- [x] Evitar navegação inferior e empilhamento específico de mobile.
+- [ ] Validar viewport móvel e viewport 16:9 de TV.
+- [ ] Criar commit da correcção e enviar ao GitHub.
+
 # Adaptação Vercel e commit
 
 - [x] Rever scripts, build e estrutura do projecto para Vercel.

@@ -1,0 +1,1 @@
+# Inventário de links públicos — Tardis Stream\n\nPáginas analisadas: 1. Links únicos: 1.\n\n## universo\n\n| Texto | URL | Página de origem |\n|---|---|---|\n| \|�\|�\| \|C\|o\|n\|h\|e\|c\|e\|r\| \|o\| \|U\|n\|i\|v\|e\|r\|s\|o\| | https://tardisstream.blogspot.com/ | https://tardisstream.blogspot.com/ |\n

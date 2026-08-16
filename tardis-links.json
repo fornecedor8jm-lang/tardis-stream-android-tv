@@ -1,0 +1,24 @@
+{
+  "start": "https://tardisstream.blogspot.com/",
+  "pages": 1,
+  "links": [
+    {
+      "source": "https://tardisstream.blogspot.com/",
+      "label": "📖 Conhecer o Universo",
+      "url": "https://tardisstream.blogspot.com/",
+      "category": "universo",
+      "internal": true
+    }
+  ],
+  "grouped": {
+    "universo": [
+      {
+        "source": "https://tardisstream.blogspot.com/",
+        "label": "📖 Conhecer o Universo",
+        "url": "https://tardisstream.blogspot.com/",
+        "category": "universo",
+        "internal": true
+      }
+    ]
+  }
+}

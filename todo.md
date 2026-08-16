@@ -120,6 +120,45 @@
 - [ ] Garantir que OK abre o título actual e Back regressa sem perder a selecção.
 - [ ] Verificar todas as abas numa resolução de TV.
 
+# Novo repositório do site
+
+- [ ] Confirmar o nome pretendido para o novo repositório.
+- [ ] Validar o estado actual e a compilação do site.
+- [ ] Criar/exportar o snapshot completo do projecto.
+- [ ] Entregar o link ou pacote do novo repositório.
+
+# Novo repositório GitHub
+
+- [ ] Confirmar o utilizador/organização autenticado no GitHub.
+- [ ] Confirmar o nome pretendido para o novo repositório.
+- [ ] Validar a compilação e o estado actual do site.
+- [ ] Criar o repositório novo e enviar o código.
+- [ ] Entregar o URL do GitHub e o checkpoint do site.
+
+# Teste visual em Chrome/Chromium de TV
+
+- [x] Capturar o preview em 1280×720 e 1920×1080.
+- [x] Confirmar que rail, hero, posters, textos e botões aparecem em proporção 16:9.
+- [x] Avaliar foco visível e navegação por setas/OK.
+- [ ] Corrigir problemas de escala ou carregamento visual.
+- [x] Registar a limitação: viewport simula Chrome/Chromium, não substitui o televisor físico.
+
+# Auditoria visual Android TV
+
+- [ ] Capturar a interface em 1280×720, 1920×1080 e proporção widescreen.
+- [ ] Verificar legibilidade de títulos, estados, botões e metadados à distância.
+- [ ] Verificar foco DPAD, tamanho das áreas clicáveis e rolagem dos rails.
+- [ ] Verificar se a navegação mantém o item seleccionado visível.
+- [ ] Corrigir problemas visuais encontrados e validar as cinco abas.
+
+# Auditoria de falha em browser Android TV
+
+- [ ] Auditar permissões públicas dos links de episódios.
+- [ ] Auditar formato e viewer dos arquivos no Google Drive.
+- [ ] Testar links representativos e identificar falhas prováveis.
+- [ ] Verificar cookies, login, limites de reprodução e compatibilidade do browser.
+- [ ] Adicionar fallback/mensagem de erro se a reprodução falhar.
+
 # Botão Assistir agora e compatibilidade Android TV
 
 - [x] Manter o botão de cada episódio/arco.

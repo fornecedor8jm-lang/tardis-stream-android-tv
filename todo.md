@@ -119,3 +119,20 @@
 - [ ] Fazer setas esquerda/direita mudarem o poster seleccionado e deslocarem o rail.
 - [ ] Garantir que OK abre o título actual e Back regressa sem perder a selecção.
 - [ ] Verificar todas as abas numa resolução de TV.
+
+# Correcção de correspondência dos Drives
+
+- [x] Identificar o link do poster de cada cartão separadamente.
+- [x] Identificar a pasta Drive da temporada separadamente do poster.
+- [x] Listar os links individuais dos arcos dentro de cada pasta de temporada.
+- [x] Confirmar que nenhum link de arco/episódio é usado como poster.
+- [x] Actualizar o catálogo somente após a tabela de correspondência estar validada.
+
+# Auditoria completa antes de actualizar
+
+- [x] Consultar a home com o fragmento #cards-grid.
+- [x] Consultar cada aba/seção pública visível na home.
+- [x] Guardar URLs, títulos, posters, temporadas, episódios e estados confirmados.
+- [x] Remover do modelo todos os dados que não apareçam na fonte consultada.
+- [x] Reorganizar a interface TV com os nomes e grupos exactos do site.
+- [x] Validar que cada poster e link corresponde ao respectivo título.

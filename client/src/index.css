@@ -117,3 +117,18 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 4px solid 
 @media (max-width: 980px) { .hero-mark { right: 5%; opacity: .62; transform: scale(.82) rotate(6deg); } .episode-layout { grid-template-columns: 190px minmax(0, 1fr); } .season-rail { grid-auto-columns: 145px; } }
 @media (max-width: 700px) { .tardis-app { padding-left: 0; padding-bottom: 64px; } .tardis-rail { position: fixed; inset: auto 0 0 0; width: 100%; height: 64px; flex-direction: row; justify-content: space-around; padding: 6px 12px; border-right: 0; border-top: 1px solid var(--line); } .tardis-rail.rail-expanded { width: 100%; } .tardis-brand, .rail-menu, .rail-footer { display: none; } .tardis-nav { width: 100%; flex-direction: row; justify-content: space-around; gap: 4px; } .tardis-nav button { min-height: 50px; min-width: 52px; } .tardis-nav button > span:last-child { display: block; font-size: 9px; } .tardis-nav .rail-active::before { left: 12px; right: 12px; top: auto; bottom: -2px; width: auto; height: 3px; } .tardis-topbar { padding: 18px 20px; align-items: flex-start; } .top-actions { gap: 0; } .live-clock { display: none; } .tardis-search { width: 38px; border-bottom: 0; } .tardis-search input { display: none; } .tardis-hero { min-height: 590px; padding: 54px 26px; align-items: flex-start; } .hero-copy h2 { font-size: 65px; } .hero-mark { right: 9%; top: auto; bottom: 28px; width: 170px; height: 200px; } .tardis-section, .episode-section { padding-left: 22px; padding-right: 22px; } .section-heading, .episode-header { align-items: flex-start; flex-direction: column; } .episode-layout { grid-template-columns: 1fr; } .selected-poster { max-width: 190px; } .tardis-footer { padding-left: 22px; padding-right: 22px; flex-direction: column; } .remote-hint { left: 14px; right: auto; bottom: 78px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+
+/* TV navigation correction: the expanded rail must reserve its visual width instead of covering content. */
+.tardis-app:has(.rail-expanded) .tardis-topbar,
+.tardis-app:has(.rail-expanded) main,
+.tardis-app:has(.rail-expanded) .tardis-footer {
+  margin-left: 140px;
+}
+
+@media (max-width: 900px) {
+  .tardis-app:has(.rail-expanded) .tardis-topbar,
+  .tardis-app:has(.rail-expanded) main,
+  .tardis-app:has(.rail-expanded) .tardis-footer {
+    margin-left: 0;
+  }
+}

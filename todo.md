@@ -110,3 +110,12 @@
 - [ ] Não inserir a série moderna enquanto não houver autorização explícita.
 - [ ] Criar rails de streaming independentes por grupo.
 - [ ] Verificar que cada poster corresponde ao seu próprio título.
+
+# Correcção fiel da interface TARDIS
+
+- [ ] Usar exactamente as abas: INÍCIO, CLÁSSICA, SPIN-OFFS, DOCUMENTÁRIOS e ESPECIAIS DE 60 ANOS.
+- [ ] Remover a mistura entre Clássica e Spin-offs no painel inicial.
+- [ ] Criar um rail independente para cada grupo do site original.
+- [ ] Fazer setas esquerda/direita mudarem o poster seleccionado e deslocarem o rail.
+- [ ] Garantir que OK abre o título actual e Back regressa sem perder a selecção.
+- [ ] Verificar todas as abas numa resolução de TV.

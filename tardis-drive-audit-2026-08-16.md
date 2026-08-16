@@ -60,3 +60,11 @@ A página detalhada confirma a separação correcta:
 O parser da página encontrou 11 objectos de temporadas clássicas e 78 entradas de arcos/episódios. Várias entradas possuem `url: "#"`, o que significa que não há link público confirmado para reprodução; essas entradas não devem receber um Drive inventado nem ser ligadas às pastas modernas.
 
 A correcção necessária é estrutural: `CatalogItem.poster` deve vir do campo `image` do objecto da temporada; `CatalogItem.source` deve ser reservado para a página de detalhe da temporada; e cada item da lista de episódios deve ter o seu próprio `thumb` e `url`. As 15 pastas modernas fornecidas não podem preencher nenhum desses campos da versão clássica.
+
+## CTA “Assistir agora” e compatibilidade TV
+
+O CTA principal passou a usar o primeiro URL individual de episódio confirmado e a navegar no mesmo contexto com `window.location.assign`, evitando depender de popup ou de uma nova janela, comportamento mais previsível em browsers de TV. Cada linha de episódio disponível usa o seu próprio URL do Drive; entradas com `#` permanecem desactivadas.
+
+A documentação oficial do Google Drive confirma que vídeos podem ser reproduzidos directamente no Drive, mas exige cookies de terceiros activos e depende da ligação. O Drive limita a reprodução a 1.920 × 1.080 e pode bloquear espectadores não autenticados quando o limite de visualizações é atingido. Portanto, o formato é tecnicamente adequado para um browser Android TV moderno que aceite cookies e JavaScript, mas não é garantia universal para todos os browsers de TV. A navegação no mesmo separador é preferível ao popup para comando remoto.
+
+Fonte: https://support.google.com/drive/answer/2423694?hl=pt-BR

@@ -120,6 +120,14 @@
 - [ ] Garantir que OK abre o título actual e Back regressa sem perder a selecção.
 - [ ] Verificar todas as abas numa resolução de TV.
 
+# Botão Assistir agora e compatibilidade Android TV
+
+- [x] Manter o botão de cada episódio/arco.
+- [x] Alterar apenas o rótulo “Assistir” para “Assistir agora”.
+- [x] Garantir que cada episódio/arco abre o seu próprio URL do Google Drive.
+- [x] Confirmar comportamento de links Drive em browser de Android TV.
+- [x] Validar foco DPAD, Enter/OK, Back e abertura no mesmo separador.
+
 # Correcção de correspondência dos Drives
 
 - [x] Identificar o link do poster de cada cartão separadamente.

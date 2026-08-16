@@ -1,100 +1,49 @@
-/* TARDIS STREAM TV — interface de catálogo para sala: rail temporal, posters originais, foco amplo e episódios por temporada. */
+/* TARDIS STREAM TV — catálogo geral: posters por título, rails de streaming e separação editorial rigorosa. */
 import { useEffect, useMemo, useState } from "react";
-import { ArrowLeft, ArrowRight, ChevronDown, ChevronLeft, ChevronRight, Clock3, Home as HomeIcon, Info, Menu, Play, Search, Tv, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Clock3, Home as HomeIcon, Info, Menu, Play, Search, Tv, X } from "lucide-react";
 
-const driveFolders = [
-  "1tipC1tw2x85ZZsvaqpeeM_H-sGeTKaTJ", "1qipiTfMf_njXPeAh3N7Ai807OFjWYJpr", "1u0N6xscFNNxPaNABGHEojwQ3mOcJ6oyA", "1mL7cWOpVyK5uUGdpJpBAuOf8OIY7kK3A", "13-AfYtvvTqosPBWPtH1GUiYlnMRrPBCm", "17Y8BdNH-kZ00rXyOdWOAH2UFOLHBP5M7", "1Q6e1qnAeeKmAC8XNck5_B_qweOtvXDHF", "17yrMj9hH16rsZtlyz2h8hE9iIbGO8P4q", "117a3y45-WFqSlkufmdsrmlKfE2whJlUC", "127jqXFzeXG_HR6mH5mq1SNKJ3iro-Fun", "1N3kBIA-gZxtpl6cxQ0B5_V6ytqnz82wf", "1ZJCohUzQF7dq4FBCkoMdgmqT3Jaaty0F", "1VxsceYq6amXMHEZujxy0xAqUhSLHpUXX", "1PtsYIZSOuXIkcS2BQotdUD8Tl_8YznsT", "1VTTl8bWjPkCmq18CKytQzU_qqP3sgRa3"
-];
+type CatalogItem = { id: string; title: string; subtitle: string; year: string; poster: string; status: "Disponível" | "Em breve" | "Série completa" | "Especial"; group: string; source?: string };
+const drive = (id: string) => `https://drive.google.com/drive/folders/${id}`;
+const poster = (id: string) => `https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
 
-const posterMap: Record<number, string> = {
-  7: "12at8cGeHpcsBDJehz1RnfKoI5c8IUQ0W",
-  8: "1WQi2d2W2gz_yYTF3YEPtD6naoZEIfX2R",
-  9: "1VTiDuMwRccIeQM14Lb10vLXGG_nDx8yr",
-  10: "1zwVfOGox5spHR2IdfnbWnUz3eh5ir56o",
-  12: "1sisgEXvxmpGFeX0mt0UxhGYRMiCxBdOx",
-  13: "1sbA6QHWDsPL-4w_nFEBGuUlJq2mdIoth",
-  14: "1uERt4EV9VU12-Myl78BwqLe9Dvqu12xB",
-  15: "1jsXz7yMFWqYqedFT3iuIJ7A8VOHHgvF0",
-  17: "14Xp1hHne-MBlPndx_hoTM5Q8lpEbY2CM",
-  18: "1GJ8VaF6o1kyv_tyysVLncPi4yg44MBxQ",
-  19: "1c5sam1bd12l2Rox0ljPbLPBqKROku0-i"
-};
+const classics: CatalogItem[] = [
+  [7, "7ª Temporada", "Arco em formato de filme", "1970", "12at8cGeHpcsBDJehz1RnfKoI5c8IUQ0W", "Disponível"],
+  [8, "8ª Temporada", "Arco em formato de filme", "1971", "1WQi2d2W2gz_yYTF3YEPtD6naoZEIfX2R", "Em breve"],
+  [9, "9ª Temporada", "Arco em formato de filme", "1972", "1VTiDuMwRccIeQM14Lb10vLXGG_nDx8yr", "Em breve"],
+  [10, "10ª Temporada", "Arco em formato de filme", "1973", "1zwVfOGox5spHR2IdfnbWnUz3eh5ir56o", "Disponível"],
+  [12, "12ª Temporada", "Arco em formato de filme", "1974–1975", "1sisgEXvxmpGFeX0mt0UxhGYRMiCxBdOx", "Disponível"],
+  [13, "13ª Temporada", "Arco em formato de filme", "1975–1976", "1sbA6QHWDsPL-4w_nFEBGuUlJq2mdIoth", "Em breve"],
+  [14, "14ª Temporada", "Arco em formato de filme", "1976–1977", "1uERt4EV9VU12-Myl78BwqLe9Dvqu12xB", "Em breve"],
+  [15, "15ª Temporada", "Arco em formato de filme", "1977–1978", "1jsXz7yMFWqYqedFT3iuIJ7A8VOHHgvF0", "Em breve"],
+  [17, "17ª Temporada", "Arco em formato de filme", "1979–1980", "14Xp1hHne-MBlPndx_hoTM5Q8lpEbY2CM", "Em breve"],
+  [18, "18ª Temporada", "Arco em formato de filme", "1980–1981", "1GJ8VaF6o1kyv_tyysVLncPi4yg44MBxQ", "Em breve"],
+  [19, "19ª Temporada", "Arco em formato de filme", "1982", "1c5sam1bd12l2Rox0ljPbLPBqKROku0-i", "Em breve"],
+].map(([n, title, subtitle, year, image, status]) => ({ id: `classic-${n}`, title: title as string, subtitle: subtitle as string, year: year as string, poster: poster(image as string), status: status as CatalogItem["status"], group: "Versão filme", source: drive(["1tipC1tw2x85ZZsvaqpeeM_H-sGeTKaTJ", "1qipiTfMf_njXPeAh3N7Ai807OFjWYJpr", "1u0N6xscFNNxPaNABGHEojwQ3mOcJ6oyA", "1mL7cWOpVyK5uUGdpJpBAuOf8OIY7kK3A", "13-AfYtvvTqosPBWPtH1GUiYlnMRrPBCm", "17Y8BdNH-kZ00rXyOdWOAH2UFOLHBP5M7", "1Q6e1qnAeeKmAC8XNck5_B_qweOtvXDHF", "17yrMj9hH16rsZtlyz2h8hE9iIbGO8P4q", "117a3y45-WFqSlkufmdsrmlKfE2whJlUC", "127jqXFzeXG_HR6mH5mq1SNKJ3iro-Fun", "1N3kBIA-gZxtpl6cxQ0B5_V6ytqnz82wf"][Math.max(Number(n) - 7, 0)]) }));
 
-const seasonNames: Record<number, string> = {
-  1: "A Nova Era", 2: "O Doutor e a Rose", 3: "A Tempestade se Aproxima", 4: "O Último Viajante", 5: "A Pandorica", 6: "O Silêncio", 7: "A Era de Sarah Jane", 8: "O Último Grande Senhor do Tempo", 9: "A Queda de Gallifrey", 10: "O Piloto", 11: "A Mulher que Caiu na Terra", 12: "Spyfall", 13: "Flux", 14: "A Nova Viagem", 15: "A Guerra da Realidade"
-};
+const spinOffs: CatalogItem[] = [
+  ["torchwood-1", "Torchwood · 1ª Temporada", "Spin-off", "2006", "1_BROyoRA3nvGA1n9ojYcP4Cm05ZdoDMC", "Disponível"], ["torchwood-2", "Torchwood · 2ª Temporada", "Spin-off", "2008", "1j4HwPX40Pkrksx42UM0V1Jd2RLE4X4jK", "Em breve"], ["torchwood-3", "Torchwood · Children of Earth", "Spin-off", "2009", "1EKXX2fBF6RZEgvwBDG5wAAeE-HnuUkyZ", "Em breve"], ["torchwood-4", "Torchwood · Miracle Day", "Spin-off", "2011", "1KgBkIsLR9F6HnVKHw1-r4IKsCOyWPF9n", "Em breve"],
+  ["sja-1", "The Sarah Jane Adventures · 1ª", "Spin-off", "2007", "15R5uAWyyYFCDNgtYIqOUj04QfNHkqhCP", "Em breve"], ["sja-2", "The Sarah Jane Adventures · 2ª", "Spin-off", "2008", "1XTC3TPkXCxhQw1OUOxiGGEedHAZeXwK5", "Em breve"], ["sja-3", "The Sarah Jane Adventures · 3ª", "Spin-off", "2009", "1a9kDTNknIMmlVGG4USUZ8AXrp5Zb-Q6B", "Em breve"], ["sja-4", "The Sarah Jane Adventures · 4ª", "Spin-off", "2010", "1aa_XPfTSosH6yNbItZgfmqUX5nJh7LoF", "Em breve"], ["sja-5", "The Sarah Jane Adventures · 5ª", "Spin-off", "2011", "1nKo_yxu2PeAK5Y0N1o9bnMXq0zY89o3R", "Em breve"],
+  ["class", "Class Dublado", "Série completa", "2016", "1n9NQUEPoTQdmZBOMAhFnkFNcStnqXzZl", "Série completa"], ["tales", "Tales of the TARDIS", "Spin-off especial", "2023", "1TZU5i1Ift3Vg7E3js36cqrrUcsg4pOUK", "Especial"],
+].map(([id, title, subtitle, year, image, status]) => ({ id: id as string, title: title as string, subtitle: subtitle as string, year: year as string, poster: poster(image as string), status: status as CatalogItem["status"], group: "Spin-offs" }));
 
-const availableClassicSeasons = [7, 8, 9, 10, 12, 13, 14, 15];
-
-const episodeSamples: Record<number, string[]> = {
-  1: ["Rose", "O Fim do Mundo", "Os Mortos Inquietos", "Dalek"],
-  2: ["A Invasão do Natal", "Nova Terra", "Dente e Garra", "Reunião Escolar"],
-  3: ["A Noiva em Fuga", "Smith e Jones", "O Código Shakespeare", "Não Pisque"],
-  4: ["A Viagem dos Condenados", "Parceiros no Crime", "Os Fogos de Pompeia", "O Fim do Tempo"],
-  5: ["A Décima Primeira Hora", "A Besta de Baixo", "O Tempo dos Anjos", "O Big Bang"],
-  6: ["Um Conto de Natal", "O Astronauta Impossível", "A Esposa do Doutor", "O Casamento de River Song"],
-  7: ["O Doutor, a Viúva e o Guarda-roupas", "O Asilo dos Daleks", "O Dia do Doutor"],
-  8: ["A Hora do Doutor", "Respire Fundo", "Dentro do Dalek", "Morte no Paraíso"],
-  9: ["O Último Natal", "O Aprendiz de Mágico", "A Garota Que Morreu", "Os Maridos de River Song"],
-  10: ["O Retorno do Doutor Mistério", "O Piloto", "Sorria", "A Queda do Doutor"],
-  11: ["Eram Duas Vezes", "A Mulher Que Caiu na Terra", "Rosa", "A Batalha de Ranskoor Av Kolos"],
-  12: ["Resolução", "Spyfall — Parte 1", "Fugindo dos Judoon", "As Crianças Atemporais"],
-  13: ["A Revolução dos Daleks", "O Apocalipse do Dia das Bruxas", "O Vilarejo dos Anjos", "O Poder do Doutor"],
-  14: ["A Fera Estelar", "A Imensidão Azul", "Risadinha", "Império da Morte"],
-  15: ["Joy Para o Mundo", "A Revolução Robô", "Lux", "A Guerra da Realidade"]
-};
-
-function folderUrl(season: number) { return `https://drive.google.com/drive/folders/${driveFolders[season - 1]}`; }
-function posterUrl(id?: string) { return id ? `https://drive.google.com/thumbnail?id=${id}&sz=w900` : ""; }
+const documentaries: CatalogItem[] = [{ id: "confidential", title: "Doctor Who Confidential", subtitle: "Documentário · Temporada 5", year: "2010", poster: poster("1kKP45ZdyWdwdmT94KNSwaUjUeg_OMUOC"), status: "Disponível", group: "Documentários" }];
+const specials: CatalogItem[] = [{ id: "specials", title: "Especiais de 60 anos", subtitle: "Conteúdo especial", year: "2023", poster: poster("1RvPdUH0_SzfyZ0rrcIohQugC81bABK86"), status: "Especial", group: "Especiais" }];
+const groups: Record<string, CatalogItem[]> = { "Versão filme": classics, "Spin-offs": spinOffs, "Documentários": documentaries, "Especiais": specials };
+const episodeNames = ["Arco seleccionado · Parte 1", "Arco seleccionado · Parte 2", "Material extra", "Especial de bastidores"];
 
 export default function Home() {
-  const [activeNav, setActiveNav] = useState("Clássica");
-  const [activeSeason, setActiveSeason] = useState(7);
-  const [activeCard, setActiveCard] = useState(0);
-  const [query, setQuery] = useState("");
-  const [menuOpen, setMenuOpen] = useState(false);
-  const seasons = useMemo(() => availableClassicSeasons.filter((season) => `temporada ${season} ${seasonNames[season]}`.toLowerCase().includes(query.toLowerCase())), [query]);
-  const selected = seasons[activeCard] ?? activeSeason;
-  const episodes = episodeSamples[selected] ?? [];
-
-  useEffect(() => {
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape" || event.key === "Backspace") setMenuOpen(false);
-      if (event.key === "ArrowRight") setActiveCard((value) => Math.min(value + 1, Math.max(seasons.length - 1, 0)));
-      if (event.key === "ArrowLeft") setActiveCard((value) => Math.max(value - 1, 0));
-      if (event.key === "ArrowDown") setActiveSeason(selected);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [seasons.length, selected]);
-
-  const openSource = (url: string) => { window.location.href = url; };
-  const poster = posterUrl(posterMap[selected]);
-
-  return <div className="tardis-app">
-    <aside className={`tardis-rail ${menuOpen ? "rail-expanded" : ""}`}>
-      <button className="tardis-brand" onClick={() => setActiveNav("Início")} aria-label="Tardis Stream"><span className="tardis-box">✦</span><span>TARDIS<br /><b>STREAM</b></span></button>
-      <button className="rail-menu" onClick={() => setMenuOpen(!menuOpen)} aria-label="Abrir menu">{menuOpen ? <X /> : <Menu />}</button>
-      <nav className="tardis-nav" aria-label="Navegação principal">
-        {[{ label: "Início", icon: <HomeIcon /> }, { label: "Clássica", icon: <Tv /> }, { label: "Spin-offs", icon: <span className="nav-glyph">✦</span> }, { label: "Especiais", icon: <span className="nav-glyph">∞</span> }].map((item) => <button key={item.label} className={activeNav === item.label ? "rail-active" : ""} onClick={() => setActiveNav(item.label)}>{item.icon}<span>{item.label}</span></button>)}
-      </nav>
-      <div className="rail-footer"><button aria-label="Pesquisar" onClick={() => document.getElementById("tardis-search")?.focus()}><Search /></button><span className="rail-year">1963—∞</span></div>
-    </aside>
-
-    <header className="tardis-topbar"><div><span className="eyebrow">UNIVERSO DOCTOR WHO</span><h1>{activeNav}</h1></div><div className="top-actions"><span className="live-clock"><Clock3 size={16} /> 21:42</span><label className="tardis-search"><Search size={18} /><input id="tardis-search" value={query} onChange={(event) => { setQuery(event.target.value); setActiveCard(0); }} placeholder="Buscar temporadas" aria-label="Buscar temporadas" /></label></div></header>
-
-    <main>
-      <section className="tardis-hero">
-        <div className="hero-vortex" />
-        <div className="hero-copy"><span className="hero-kicker">SINTONIZANDO O VÓRTEX TEMPORAL</span><h2>Doctor Who<br /><em>Clássica</em></h2><p>Uma viagem por décadas de aventuras, doutores e mundos impossíveis. Escolha uma temporada para começar.</p><div className="hero-meta"><span>1963 — ∞</span><span>{seasons.length} temporadas com poster</span><span>Fonte externa</span></div><div className="hero-actions"><button className="primary-action" onClick={() => openSource(folderUrl(selected))}><Play size={18} fill="currentColor" /> Abrir temporada {String(selected).padStart(2, "0")}</button><button className="secondary-action" onClick={() => document.getElementById("temporadas")?.scrollIntoView({ behavior: "smooth" })}><Info size={18} /> Ver temporadas</button></div></div>
-        <div className="hero-mark"><span className="hero-star">✦</span><b>THE<br />TIME<br />LORD</b><small>PUBLIC CALL BOX</small></div>
-      </section>
-
-      <section className="tardis-section" id="temporadas"><div className="section-heading"><div><span className="eyebrow">CATÁLOGO PRINCIPAL</span><h2>Temporadas clássicas</h2></div><span className="section-count">{seasons.length} com poster original</span></div><div className="season-rail">{seasons.map((season, index) => <button key={season} className={`season-card ${season === selected ? "selected" : ""}`} onFocus={() => { setActiveCard(index); setActiveSeason(season); }} onClick={() => setActiveSeason(season)} aria-label={`Abrir temporada ${season}`}><div className="season-art"><img src={posterUrl(posterMap[season])} alt={`Poster original da temporada ${season}`} /><span className="season-play"><Play size={16} fill="currentColor" /></span></div><strong>{season}ª Temporada</strong><small>{seasonNames[season]}</small><em>Poster original</em></button>)}</div></section>
-
-      <section className="episode-section"><div className="episode-header"><div><span className="eyebrow">TEMPORADA {String(selected).padStart(2, "0")}</span><h2>{seasonNames[selected]}</h2><p>{episodes.length} episódios destacados · pasta pública no Google Drive</p></div><button className="source-button" onClick={() => openSource(folderUrl(selected))}>Abrir pasta <ArrowRight size={17} /></button></div><div className="episode-layout"><div className="selected-poster"><img src={poster} alt={`Poster original da temporada ${selected}`} /></div><div className="episode-list">{episodes.map((episode, index) => <button key={episode} className="episode-row" onClick={() => openSource(folderUrl(selected))}><span className="episode-number">{String(index + 1).padStart(2, "0")}</span><span><strong>{episode}</strong><small>Temporada {selected} · ficheiro MP4 na pasta oficial</small></span><Play size={18} fill="currentColor" /></button>)}</div></div></section>
-    </main>
-    <footer className="tardis-footer"><span>TARDIS STREAM</span><span>Universo Doctor Who · 1963 — ∞</span><a href="https://tardisstream.blogspot.com/" target="_blank" rel="noreferrer">Abrir site original <ArrowRight size={15} /></a></footer>
-    <div className="remote-hint"><ArrowLeft size={15} /><ArrowRight size={15} /> navegar <kbd>OK</kbd> seleccionar <span>Backspace</span> voltar</div>
-  </div>;
+  const [activeNav, setActiveNav] = useState("Início"); const [activeCard, setActiveCard] = useState(0); const [query, setQuery] = useState(""); const [menuOpen, setMenuOpen] = useState(false);
+  const visible = useMemo(() => activeNav === "Início" ? [...classics.slice(0, 5), ...spinOffs.slice(0, 4)] : (groups[activeNav] ?? []), [activeNav]);
+  const filtered = useMemo(() => visible.filter((item) => `${item.title} ${item.subtitle} ${item.year}`.toLowerCase().includes(query.toLowerCase())), [visible, query]);
+  const selected = filtered[activeCard] ?? filtered[0] ?? visible[0] ?? classics[0];
+  useEffect(() => { const onKey = (e: KeyboardEvent) => { if (e.key === "Escape" || e.key === "Backspace") setMenuOpen(false); if (e.key === "ArrowRight") setActiveCard((v) => Math.min(v + 1, Math.max(filtered.length - 1, 0))); if (e.key === "ArrowLeft") setActiveCard((v) => Math.max(v - 1, 0)); }; window.addEventListener("keydown", onKey); return () => window.removeEventListener("keydown", onKey); }, [filtered.length]);
+  const openSource = () => selected.source ? (window.location.href = selected.source) : window.open("https://tardisstream.blogspot.com/", "_blank", "noopener,noreferrer");
+  const title = activeNav === "Início" ? "Descobrir" : activeNav;
+  const kicker = activeNav === "Versão filme" ? "ARQUIVOS DE FÃ · ARCOS SELECCIONADOS" : activeNav === "Spin-offs" ? "UNIVERSOS DERIVADOS" : activeNav === "Documentários" ? "POR TRÁS DA TARDIS" : activeNav === "Especiais" ? "EVENTOS TEMPORAIS" : "CATÁLOGO TARDIS STREAM";
+  return <div className="tardis-app"><aside className={`tardis-rail ${menuOpen ? "rail-expanded" : ""}`}><button className="tardis-brand" onClick={() => setActiveNav("Início")}><span className="tardis-box">✦</span><span>TARDIS<br /><b>STREAM</b></span></button><button className="rail-menu" onClick={() => setMenuOpen(!menuOpen)} aria-label="Abrir menu">{menuOpen ? <X /> : <Menu />}</button><nav className="tardis-nav">{[{ label: "Início", icon: <HomeIcon /> }, { label: "Versão filme", icon: <Tv /> }, { label: "Spin-offs", icon: <span className="nav-glyph">✦</span> }, { label: "Documentários", icon: <span className="nav-glyph">▣</span> }, { label: "Especiais", icon: <span className="nav-glyph">∞</span> }].map((item) => <button key={item.label} className={activeNav === item.label ? "rail-active" : ""} onClick={() => { setActiveNav(item.label); setActiveCard(0); setQuery(""); }}>{item.icon}<span>{item.label}</span></button>)}</nav><div className="rail-footer"><button aria-label="Pesquisar" onClick={() => document.getElementById("tardis-search")?.focus()}><Search /></button><span className="rail-year">1963—∞</span></div></aside>
+    <header className="tardis-topbar"><div><span className="eyebrow">UNIVERSO DOCTOR WHO</span><h1>{title}</h1></div><div className="top-actions"><span className="live-clock"><Clock3 size={16} /> 21:42</span><label className="tardis-search"><Search size={18} /><input id="tardis-search" value={query} onChange={(e) => { setQuery(e.target.value); setActiveCard(0); }} placeholder="Buscar títulos" aria-label="Buscar títulos" /></label></div></header>
+    <main><section className="tardis-hero"><div className="hero-vortex" /><div className="hero-copy"><span className="hero-kicker">{kicker}</span><h2>{selected.title}<br /><em>{selected.year}</em></h2><p>{activeNav === "Versão filme" ? "Arcos seleccionados em formato de filme, feitos por fãs. Não é a série clássica completa." : `${selected.subtitle}. Explore o catálogo público organizado para ecrãs grandes.`}</p><div className="hero-meta"><span>{selected.status}</span><span>{visible.length} títulos nesta secção</span><span>Fonte pública</span></div><div className="hero-actions"><button className="primary-action" onClick={openSource}><Play size={18} fill="currentColor" /> Abrir título</button><button className="secondary-action" onClick={() => document.getElementById("catalogo")?.scrollIntoView({ behavior: "smooth" })}><Info size={18} /> Ver catálogo</button></div></div><div className="hero-mark"><span className="hero-star">✦</span><b>THE<br />TIME<br />LORD</b><small>PUBLIC CALL BOX</small></div></section>
+      <section className="tardis-section" id="catalogo"><div className="section-heading"><div><span className="eyebrow">{activeNav === "Início" ? "EM DESTAQUE" : "CATÁLOGO PÚBLICO"}</span><h2>{activeNav === "Início" ? "Escolhas do vórtex" : activeNav}</h2></div><span className="section-count">{filtered.length} títulos</span></div><div className="season-rail">{filtered.map((item, index) => <button key={item.id} className={`season-card ${item.id === selected.id ? "selected" : ""}`} onFocus={() => setActiveCard(index)} onClick={() => setActiveCard(index)}><div className="season-art"><img src={item.poster} alt={`Poster de ${item.title}`} /><span className="season-play"><Play size={16} fill="currentColor" /></span></div><strong>{item.title}</strong><small>{item.subtitle} · {item.year}</small><em>{item.status}</em></button>)}</div></section>
+      <section className="episode-section"><div className="episode-header"><div><span className="eyebrow">DETALHE DO TÍTULO</span><h2>{selected.title}</h2><p>{selected.subtitle} · {selected.year} · {selected.status}</p></div><button className="source-button" onClick={openSource}>Abrir fonte <ArrowRight size={17} /></button></div><div className="episode-layout"><div className="selected-poster"><img src={selected.poster} alt={`Poster de ${selected.title}`} /></div><div className="episode-list">{episodeNames.map((episode, index) => <button key={episode} className="episode-row" onClick={openSource}><span className="episode-number">{String(index + 1).padStart(2, "0")}</span><span><strong>{episode}</strong><small>{selected.status === "Em breve" ? "Disponibilidade indicada como em breve" : "Abrir fonte pública do título"}</small></span><Play size={18} fill="currentColor" /></button>)}</div></div></section></main>
+    <footer className="tardis-footer"><span>TARDIS STREAM</span><span>Catálogo público · versão filme, spin-offs, documentários e especiais</span><a href="https://tardisstream.blogspot.com/" target="_blank" rel="noreferrer">Abrir site original <ArrowRight size={15} /></a></footer><div className="remote-hint"><ArrowLeft size={15} /><ArrowRight size={15} /> navegar <kbd>OK</kbd> seleccionar <span>Backspace</span> voltar</div></div>;
 }

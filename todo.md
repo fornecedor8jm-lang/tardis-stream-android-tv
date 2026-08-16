@@ -56,3 +56,57 @@
 - [ ] Remover placeholders e blocos vazios do catálogo.
 - [ ] Ajustar a selecção inicial e os episódios aos títulos restantes.
 - [ ] Verificar visualmente que só permanecem posters originais.
+
+# Restaurar temporadas e corrigir eras
+
+- [ ] Restaurar as temporadas removidas do catálogo.
+- [ ] Separar série clássica, série moderna, spin-offs e especiais.
+- [ ] Auditar nomes, anos e episódios para evitar mistura entre eras.
+- [ ] Pesquisar poster correspondente para cada temporada sem imagem.
+- [ ] Aplicar as capas pesquisadas sem usar poster de outro título.
+- [ ] Verificar as abas e o destaque de cada universo.
+
+# Auditoria antes da reconstrução
+
+- [ ] Listar todas as categorias e páginas de spin-offs existentes no Tardis Stream.
+- [ ] Confirmar quais spin-offs têm temporadas ou episódios públicos.
+- [ ] Verificar a quantidade de temporadas da série moderna fora do Tardis Stream apenas como referência editorial.
+- [ ] Marcar a série moderna como indisponível no Tardis Stream.
+- [ ] Não criar links, episódios ou posters como se fossem conteúdo disponível no site.
+- [ ] Entregar o inventário confirmado antes de alterar a interface.
+
+# Classificação corrigida do catálogo
+
+- [ ] Verificar cada spin-off separadamente e confirmar a quantidade de temporadas no TARDIS Stream.
+- [ ] Renomear a categoria principal para “Versão filme — arcos seleccionados”.
+- [ ] Informar que Doctor Who clássica (1963–1989) não está completa no site.
+- [ ] Marcar Doctor Who moderna como indisponível no TARDIS Stream.
+- [ ] Impedir que a versão filme seja contada como série clássica ou moderna.
+- [ ] Exibir etiquetas e textos explicativos distintos nas abas.
+
+# Auditoria da versão filme clássica
+
+- [ ] Listar todas as temporadas clássicas exibidas na home do TARDIS Stream.
+- [ ] Confirmar quais entradas são arcos em formato de filme de fã.
+- [ ] Registar o ano, o doutor/arco e o estado de cada entrada.
+- [ ] Separar entradas disponíveis, “Em breve” e não confirmadas.
+- [ ] Confirmar que não existe catálogo completo da série clássica.
+- [ ] Corrigir a classificação editorial antes de implementar as abas.
+
+# Experiência streaming da versão filme
+
+- [ ] Associar cada uma das 11 entradas clássicas a um poster correspondente.
+- [ ] Manter o rótulo “Arco em formato de filme” em cada cartão.
+- [ ] Criar hero e rails de posters com aparência de streaming.
+- [ ] Separar spin-offs e modernas em áreas próprias.
+- [ ] Manter a série moderna oculta/bloqueada até autorização explícita.
+- [ ] Verificar poster, temporada, ano e estado de cada entrada.
+
+# Catálogo geral com posters
+
+- [ ] Inventariar todos os títulos públicos do TARDIS Stream.
+- [ ] Recolher poster correspondente para cada temporada, spin-off, documentário e especial.
+- [ ] Separar versão filme clássica, Torchwood, Sarah Jane, Class, Tales, documentários e especiais.
+- [ ] Não inserir a série moderna enquanto não houver autorização explícita.
+- [ ] Criar rails de streaming independentes por grupo.
+- [ ] Verificar que cada poster corresponde ao seu próprio título.

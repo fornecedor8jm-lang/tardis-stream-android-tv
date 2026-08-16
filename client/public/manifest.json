@@ -1,0 +1,21 @@
+{
+  "name": "Tardis Stream TV",
+  "short_name": "Tardis Stream",
+  "description": "Catálogo Tardis Stream optimizado para Android TV.",
+  "packageName": "com.tardisstream.tv",
+  "version": "1.0.0",
+  "versionCode": 1,
+  "start_url": "/",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#050812",
+  "theme_color": "#050812",
+  "icons": [
+    {
+      "src": "/manus-storage/tardis-stream-tv-logo-512_9eafde15.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

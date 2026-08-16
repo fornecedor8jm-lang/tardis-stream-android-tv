@@ -127,6 +127,14 @@
 - [ ] Criar/exportar o snapshot completo do projecto.
 - [ ] Entregar o link ou pacote do novo repositório.
 
+# Identidade do app Android TV
+
+- [ ] Definir package name `com.tardisstream.tv`.
+- [ ] Definir versão `1.0.0` e `versionCode` 1.
+- [ ] Criar logo Tardis Stream quadrada de 512×512.
+- [ ] Adicionar a logo como asset de launcher/favicon do projecto.
+- [ ] Validar metadados e entregar os ficheiros finais.
+
 # Correcção do enquadramento móvel
 
 - [ ] Reduzir a largura efectiva do rail sem trocar as abas de posição.

@@ -1,0 +1,12 @@
+{
+  "applicationId": "com.tardisstream.tv",
+  "packageName": "com.tardisstream.tv",
+  "appName": "Tardis Stream TV",
+  "versionName": "1.0.0",
+  "versionCode": 1,
+  "target": "android-tv",
+  "orientation": "landscape",
+  "icon": "/manus-storage/tardis-stream-tv-logo-512_9eafde15.png",
+  "minWebViewWidth": 1280,
+  "notes": "Web app hosted on Vercel; use this metadata when generating the Android TV wrapper/APK."
+}

@@ -127,6 +127,12 @@
 - [ ] Criar/exportar o snapshot completo do projecto.
 - [ ] Entregar o link ou pacote do novo repositório.
 
+# Logo menor do app
+
+- [ ] Criar logo em 256×256.
+- [ ] Actualizar manifesto e favicon para a nova logo.
+- [ ] Validar o tamanho e entregar o asset final.
+
 # Identidade do app Android TV
 
 - [x] Definir package name `com.tardisstream.tv`.

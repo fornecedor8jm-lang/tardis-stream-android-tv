@@ -12,8 +12,8 @@
   "theme_color": "#050812",
   "icons": [
     {
-      "src": "/manus-storage/tardis-stream-tv-logo-512_9eafde15.png",
-      "sizes": "512x512",
+      "src": "/manus-storage/tardis-stream-tv-logo-256_26d20f2a.png",
+      "sizes": "256x256",
       "type": "image/png",
       "purpose": "any maskable"
     }

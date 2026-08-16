@@ -6,7 +6,7 @@
   "versionCode": 1,
   "target": "android-tv",
   "orientation": "landscape",
-  "icon": "/manus-storage/tardis-stream-tv-logo-512_9eafde15.png",
+  "icon": "/manus-storage/tardis-stream-tv-logo-256_26d20f2a.png",
   "minWebViewWidth": 1280,
   "notes": "Web app hosted on Vercel; use this metadata when generating the Android TV wrapper/APK."
 }
